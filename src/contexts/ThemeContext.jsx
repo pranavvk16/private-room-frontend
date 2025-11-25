@@ -5,29 +5,18 @@ const STORAGE_KEY = "theme";
 
 const applyTheme = (isDark) => {
   const root = document.documentElement;
-  if (isDark) {
-    root.classList.add("dark");
-  } else {
-    root.classList.remove("dark");
-  }
+  if (!root.classList.contains("dark")) root.classList.add("dark");
+  if (isDark === false) root.classList.add("dark"); // guard to always enforce dark
 };
 
 export const ThemeProvider = ({ children }) => {
-  const prefersDark =
-    typeof window !== "undefined" &&
-    window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const stored = localStorage.getItem(STORAGE_KEY);
-  const [darkMode, setDarkMode] = useState(
-    stored ? stored === "dark" : prefersDark,
-  );
+  const [darkMode] = useState(true);
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, darkMode ? "dark" : "light");
     applyTheme(darkMode);
   }, [darkMode]);
 
-  const toggleDarkMode = () => setDarkMode((prev) => !prev);
+  const toggleDarkMode = () => undefined; // no-op, dark only
 
   const value = useMemo(() => ({ darkMode, toggleDarkMode }), [darkMode]);
 

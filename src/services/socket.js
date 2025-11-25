@@ -27,6 +27,7 @@ socket.io.on("error", (err) => log("[SOCKET] transport error", err?.message || e
 
 export const setSocketSession = (roomId, username) => {
   session = { roomId, username };
+  // Emit join exactly once when we have a connected socket and valid session.
   if (socket.connected && roomId && username) {
     socket.emit("joinRoom", { roomId, username });
   }

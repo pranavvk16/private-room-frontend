@@ -30,21 +30,24 @@ export const MessageInput = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="glass-card flex items-center gap-3 px-4 py-3">
+    <form
+      onSubmit={handleSubmit}
+      className="input-surface flex items-center gap-3 rounded-[18px] bg-white px-4 py-3 shadow-[0_18px_36px_-28px_rgba(15,23,42,0.6)] backdrop-blur-lg dark:bg-[#0c1424]/70"
+    >
       <input
         value={text}
         onChange={(e) => {
           setText(e.target.value);
           handleTypingStart();
         }}
-        className="input-focus w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-500 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-white/50"
+        className="app-input input-focus w-full px-4 py-3 text-sm"
         placeholder={placeholder}
         disabled={disabled}
       />
       <button
         type="submit"
         disabled={disabled || !text.trim()}
-        className="rounded-xl bg-gradient-to-r from-sky-500 to-blue-700 px-4 py-3 text-sm font-semibold text-white shadow-lg transition hover:from-sky-400 hover:to-blue-600 disabled:cursor-not-allowed disabled:opacity-60"
+        className="rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white shadow-[0_10px_30px_-18px_rgba(15,23,42,0.8)] transition hover:-translate-y-0.5 hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-sky-500 dark:text-white dark:hover:bg-sky-400"
       >
         Send
       </button>

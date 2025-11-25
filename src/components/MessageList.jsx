@@ -18,10 +18,10 @@ export const MessageList = ({ messages, currentUser }) => {
   return (
     <div
       ref={containerRef}
-      className="scrollbar-thin glass-card h-[60vh] max-h-[70vh] w-full overflow-y-auto p-4"
+      className="scrollbar-thin chat-surface h-[60vh] max-h-[70vh] w-full overflow-y-auto rounded-[22px] bg-white p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-lg dark:border-white/15 dark:bg-[#0d1628]/80 dark:text-white"
     >
       {messages.length === 0 ? (
-        <p className="text-center text-sm text-slate-300/80">Start the conversation.</p>
+        <p className="text-center text-sm text-slate-600 dark:text-slate-300">Start the conversation.</p>
       ) : (
         <ul className="space-y-3">
           {messages.map((msg, idx) => {
@@ -35,12 +35,12 @@ export const MessageList = ({ messages, currentUser }) => {
                 }`}
               >
                 <div
-                  className={`rounded-2xl px-4 py-3 shadow-md ${
+                  className={`rounded-2xl px-4 py-3 shadow-sm ${
                     isSystem
-                      ? "bg-slate-900/5 text-slate-700 dark:bg-white/5 dark:text-slate-200"
+                      ? "bg-slate-100 text-slate-700 dark:border dark:border-white/12 dark:bg-white/10 dark:text-white"
                       : isOwn
-                        ? "bg-gradient-to-br from-sky-500/80 to-blue-700/80 text-white"
-                        : "border border-slate-200 bg-slate-900/5 text-slate-900 dark:border-white/10 dark:bg-white/10 dark:text-slate-100"
+                        ? "bg-gradient-to-br from-sky-500 to-blue-600 text-white"
+                        : "border border-slate-200/80 bg-white text-slate-900 dark:border-white/15 dark:bg-[#0f1b30] dark:text-white"
                   }`}
                 >
                   {!isSystem && (

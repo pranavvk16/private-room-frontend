@@ -31,10 +31,6 @@ export const JoinRoom = () => {
       setRoomId(roomId);
       setSocketSession(roomId, nickname);
 
-      if (socket.connected) {
-        socket.emit("joinRoom", { roomId, username: nickname });
-      }
-
       log("Join success", roomId);
       navigate("/chat");
     } catch (error) {
@@ -58,10 +54,9 @@ export const JoinRoom = () => {
   return (
     <section className="glass-card w-full max-w-3xl p-8 text-slate-900 dark:text-white">
       <div className="mb-6 space-y-2">
-        <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Join a Room</h1>
-        <p className="text-slate-600 dark:text-slate-200/80">
-          Enter a room ID and a temporary nickname. We log success and failure so you can debug
-          quickly.
+        <h1 className="text-3xl font-semibold text-slate-900 dark:text-slate-50">Join a Room</h1>
+        <p className="text-sm text-slate-700 dark:text-slate-200">
+          Drop in with a room code and a short nickname. You can leave anytime.
         </p>
       </div>
       <form className="space-y-5" onSubmit={submit}>
@@ -72,7 +67,7 @@ export const JoinRoom = () => {
           <input
             value={roomId}
             onChange={(e) => setRoomIdInput(e.target.value)}
-            className="input-focus mt-2 w-full rounded-xl border border-white/40 bg-white/70 px-4 py-3 text-sm text-slate-900 dark:border-white/10 dark:bg-white/5 dark:text-white"
+            className="app-input input-focus mt-2 w-full px-4 py-3 text-sm"
             placeholder="Paste room code"
             required
           />
@@ -84,7 +79,7 @@ export const JoinRoom = () => {
           <input
             value={nickname}
             onChange={(e) => setNicknameInput(e.target.value)}
-            className="input-focus mt-2 w-full rounded-xl border border-white/40 bg-white/70 px-4 py-3 text-sm text-slate-900 dark:border-white/10 dark:bg-white/5 dark:text-white"
+            className="app-input input-focus mt-2 w-full px-4 py-3 text-sm"
             placeholder="Your handle"
             required
           />
@@ -92,7 +87,7 @@ export const JoinRoom = () => {
         <button
           type="submit"
           disabled={loading}
-          className="w-full rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 px-4 py-3 text-sm font-semibold text-white shadow-lg transition hover:brightness-110 disabled:opacity-60"
+          className="w-full rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_-18px_rgba(15,23,42,0.8)] transition hover:-translate-y-0.5 hover:bg-slate-800 disabled:opacity-60 dark:bg-sky-500 dark:text-white dark:hover:bg-sky-400"
         >
           {loading ? "Joining..." : "Join room"}
         </button>

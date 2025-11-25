@@ -67,9 +67,9 @@ export const CreateRoom = () => {
   return (
     <section className="glass-card w-full max-w-4xl p-8 text-slate-900 dark:text-white">
       <div className="mb-6 flex flex-col gap-2">
-        <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Create a Room</h1>
-        <p className="text-slate-600 dark:text-slate-200/80">
-          Spin up a fresh space, then share the invite link built for this frontend.
+        <h1 className="text-3xl font-semibold text-slate-900 dark:text-white">Create a Room</h1>
+        <p className="text-sm text-slate-700 dark:text-slate-200">
+          Name it, set limits, and share the invite. Nothing extra.
         </p>
       </div>
 
@@ -82,7 +82,7 @@ export const CreateRoom = () => {
             <input
               value={form.roomName}
               onChange={(e) => handleChange("roomName", e.target.value)}
-              className="input-focus mt-2 w-full rounded-xl border border-white/40 bg-white/70 px-4 py-3 text-sm text-slate-900 dark:border-white/10 dark:bg-white/5 dark:text-white"
+              className="app-input input-focus mt-2 w-full px-4 py-3 text-sm"
               placeholder="Team Sync"
             />
           </div>
@@ -95,7 +95,7 @@ export const CreateRoom = () => {
               value={form.expiresInMinutes}
               min={5}
               onChange={(e) => handleChange("expiresInMinutes", e.target.value)}
-              className="input-focus mt-2 w-full rounded-xl border border-white/40 bg-white/70 px-4 py-3 text-sm text-slate-900 dark:border-white/10 dark:bg-white/5 dark:text-white"
+              className="app-input input-focus mt-2 w-full px-4 py-3 text-sm"
             />
           </div>
           <div>
@@ -107,13 +107,13 @@ export const CreateRoom = () => {
               min={2}
               value={form.maxUsers}
               onChange={(e) => handleChange("maxUsers", e.target.value)}
-              className="input-focus mt-2 w-full rounded-xl border border-white/40 bg-white/70 px-4 py-3 text-sm text-slate-900 dark:border-white/10 dark:bg-white/5 dark:text-white"
+              className="app-input input-focus mt-2 w-full px-4 py-3 text-sm"
             />
           </div>
           <button
             type="submit"
             disabled={loading}
-            className="mt-2 w-full rounded-xl bg-gradient-to-r from-emerald-400 to-sky-500 px-4 py-3 text-sm font-semibold text-slate-900 shadow-lg transition hover:brightness-110 disabled:opacity-60"
+            className="mt-2 w-full rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_-18px_rgba(15,23,42,0.8)] transition hover:-translate-y-0.5 hover:bg-slate-800 disabled:opacity-60 dark:bg-white dark:text-slate-900 dark:hover:bg-white/90"
           >
             {loading ? "Creating..." : "Create room"}
           </button>
@@ -122,7 +122,7 @@ export const CreateRoom = () => {
           )}
         </div>
 
-        <div className="space-y-4 rounded-2xl border border-white/10 bg-white/60 p-4 text-slate-900 dark:bg-white/5 dark:text-white">
+        <div className="info-card space-y-4 rounded-2xl p-4 text-slate-900 dark:text-white">
           <h3 className="text-lg font-semibold">Room details</h3>
           {created?.roomId ? (
             <>
@@ -132,19 +132,19 @@ export const CreateRoom = () => {
                 <button
                   type="button"
                   onClick={copyLink}
-                  className="rounded-lg bg-white/80 px-3 py-2 text-sm font-medium text-slate-900 transition hover:bg-white/90 dark:bg-white/10 dark:text-white dark:hover:bg-white/20"
+                  className="rounded-lg border border-slate-200/80 bg-white px-3 py-2 text-sm font-medium text-slate-900 transition hover:-translate-y-0.5 hover:border-slate-300 dark:border-white/10 dark:bg-white/5 dark:text-white"
                 >
                   Copy share link
                 </button>
                 <a
                   href={`/join/${created.roomId}`}
-                  className="rounded-lg bg-sky-500/90 px-3 py-2 text-sm font-semibold text-slate-900 transition hover:bg-sky-400"
+                  className="rounded-lg bg-slate-900 px-3 py-2 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-slate-800 dark:bg-white dark:text-slate-900"
                 >
                   Go to join page
                 </a>
               </div>
               {info && (
-                <div className="space-y-2 rounded-xl border border-white/10 bg-white/70 p-3 text-sm text-slate-900 dark:bg-white/5 dark:text-white">
+                <div className="info-card space-y-2 rounded-xl p-3 text-sm text-slate-900 dark:text-white">
                   <InfoRow label="Name" value={info.name} />
                   <InfoRow label="Max users" value={info.maxUsers} />
                   <InfoRow
@@ -156,7 +156,7 @@ export const CreateRoom = () => {
               )}
             </>
           ) : (
-            <p className="text-sm text-slate-200/70">
+            <p className="text-sm text-slate-600 dark:text-slate-200">
               Room metadata and the invite link will show here after creation. We log all API
               responses for quick troubleshooting.
             </p>
